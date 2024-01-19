@@ -11,6 +11,12 @@
 import tkinter as tk, pandas as pd, pymsgbox as pmsg, sys, os
 from tkinter import filedialog
 from datetime import datetime
+
+OBRIGADOPROGRAMAENCERRADO = 'Obrigado. Programa encerrado'
+ENCERRARPROGRAMA = 'Encerrar programa'
+LOGINPROXY = 'Login Proxy - [PTFE v1.0]'
+PTFEE = 'PTFE v1.0'
+
 def abrir_seletor_arquivos():
     while True:
         # Cria uma instância do tkinter.Tk() para ser a janela principal
@@ -24,20 +30,20 @@ def abrir_seletor_arquivos():
         if caminho_arquivo:
             confirmacao = pmsg.confirm(text=f'Você selecionou o arquivo:\n{caminho_arquivo}\nDeseja continuar?',
                                        title='Confirmação de arquivo - [PTFE v1.0]',
-                                       buttons=['Confirmo', 'Escolher novamente', 'Encerrar programa'])
+                                       buttons=['Confirmo', 'Escolher novamente', ENCERRARPROGRAMA])
             if confirmacao == 'Confirmo':
                 return caminho_arquivo
-            elif confirmacao == 'Encerrar programa':
-                pmsg.alert(text='Obrigado. Programa encerrado',
-                           title='PTFE v1.0')
+            elif confirmacao == ENCERRARPROGRAMA:
+                pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
+                           title=PTFEE)
                 sys.exit()
         else:
             escolha = pmsg.confirm(text='Oops, nenhum arquivo selecionado.',
                                    title='Erro - [PTFE v1.0]',
-                                   buttons=['Escolher novamente', 'Encerrar programa'])
-            if escolha == 'Encerrar programa':
-                pmsg.alert(text='Obrigado. Programa encerrado',
-                           title='PTFE v1.0')
+                                   buttons=['Escolher novamente', ENCERRARPROGRAMA])
+            if escolha == ENCERRARPROGRAMA:
+                pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
+                           title=PTFEE)
                 sys.exit()
 
 def nome_curso(shortname):
@@ -136,7 +142,7 @@ def mult_img_selection(img_list, confidence_level):
             return pos_arq  # Retorna a posição se a imagem for encontrada
         except pa.ImageNotFoundException:
             continue
-    pmsg.alert(text='ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.', title='PTFE v1.0')
+    pmsg.alert(text='ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.', title=PTFEE)
     sys.exit()
 
 def select_drop_down_list_exact(list_file_name, img_list, confidence_level_dropdown, confidence_level_options):
@@ -181,7 +187,7 @@ def login_verification(nome_arquivo):
         time.sleep(.5)  # pausa para verificar se o login foi correto.
         pos_login_proxy = pa.locateOnScreen(nome_arquivo, confidence=0.7)
         if pos_login_proxy is not None:
-            pmsg.alert(text='Erro de digitação, tente novamente.', title='Login Proxy - [PTFE v1.0]', button = 'Tentar novamente')
+            pmsg.alert(text='Erro de digitação, tente novamente.', title=LOGINPROXY, button = 'Tentar novamente')
             return True
     except pa.ImageNotFoundException:
         return False
@@ -191,11 +197,11 @@ def login_proxy():
     #também cria um loop para verificar se o login foi digitado corretamente
     time.sleep(1) #pausa para esperar o chrome carregar.
     while True:
-        proxyUser = pmsg.prompt(text='Digite seu nome de usuário', title='Login Proxy - [PTFE v1.0]')
-        proxyPassword = pmsg.password(text='Digite sua senha', title='Login Proxy - [PTFE v1.0]', mask='*')
-        pa.write(proxyUser)
+        proxy_user = pmsg.prompt(text='Digite seu nome de usuário', title=LOGINPROXY)
+        proxy_password = pmsg.password(text='Digite sua senha', title=LOGINPROXY, mask='*')
+        pa.write(proxy_user)
         pa.press('tab')
-        pa.write(proxyPassword)
+        pa.write(proxy_password)
         pa.press('enter')
         if not login_verification('media/login-proxy.png'):
             break
@@ -212,21 +218,19 @@ def login_plataforma_estudante():
     #verifica se já está logado e digita ou não a senha
     try:
         pos_verific_login = pa.locateCenterOnScreen('media/verificacao-login.png', confidence=0.7)
-        if pos_verific_login is not None:
-            pass
     except pa.ImageNotFoundException:
         pos_verific_login = None
 
     if pos_verific_login is None:
         while True:
-            AVAUser = pmsg.prompt(text='Digite seu nome de usuário. Se já estiver salvo, apenas aperte "enter"', title='Login AVA - [PTFE v1.0]')
-            AVAPassword = pmsg.password(text='Digite sua senha. Se já estiver salvo, apenas aperte "enter"', title='Login AVA - [PTFE v1.0]', mask='*')
+            ava_user = pmsg.prompt(text='Digite seu nome de usuário. Se já estiver salvo, apenas aperte "enter"', title='Login AVA - [PTFE v1.0]')
+            ava_password = pmsg.password(text='Digite sua senha. Se já estiver salvo, apenas aperte "enter"', title='Login AVA - [PTFE v1.0]', mask='*')
             pos_login = pa.locateCenterOnScreen('media/pos-login.png', confidence=0.7)
             pos_login = (pos_login[0], pos_login[1] - 120)
             pa.click(pos_login, duration=1)
-            pa.write(AVAUser)
+            pa.write(ava_user)
             pa.press('tab')
-            pa.write(AVAPassword)
+            pa.write(ava_password)
             pa.press('enter')
             if login_verification('media/pos-login.png') is False:
                 break
@@ -309,13 +313,13 @@ select_drop_down_list_dual('media/previsualizar_forcar-modalidade-grupo.png', 0.
 select_drop_down_list_dual('media/previsualizar_mostrar-livro-notas.png', 0.8, 'up')
 
 #Formato de blocos
-formato = pmsg.confirm(text=f'Selecione o formato do curso: Blocos ou Tópicos.', title='Formato de curso - [PTFE v1.0]', buttons=['Blocos', 'Tópicos', 'Encerrar programa'])
+formato = pmsg.confirm(text='Selecione o formato do curso: Blocos ou Tópicos.', title='Formato de curso - [PTFE v1.0]', buttons=['Blocos', 'Tópicos', ENCERRARPROGRAMA])
 
 if formato == 'Blocos':
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-blocos-op-1.png', 'media/previsualizar_formato-curso-blocos-op-2.png'], 0.7, 0.9 )
-elif formato == 'Encerrar programa':
-    pmsg.alert(text='Obrigado. Programa encerrado',
-               title='PTFE v1.0')
+elif formato == ENCERRARPROGRAMA:
+    pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
+               title=PTFEE)
     sys.exit()
 else:
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-topicos-op-1.png', 'media/previsualizar_formato-curso-topicos-op-2.png'], 0.7, 0.9 )
@@ -334,11 +338,9 @@ time.sleep(.2) #para dar tempo do scroll exectuar tranquilamente
     #confirmação de que os cursos serão alocados no 'Sem Categoria', apenas para dar mais segurança
 try:
     pos_screen = pa.locateCenterOnScreen('media/sem-categoria.png', confidence = 0.7)
-    if pos_screen is not None:
-        pass
 except pa.ImageNotFoundException:
     pmsg.alert(text='ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.',
-               title='PTFE v1.0')
+               title=PTFEE)
     sys.exit()
 
 #carregar cursos
