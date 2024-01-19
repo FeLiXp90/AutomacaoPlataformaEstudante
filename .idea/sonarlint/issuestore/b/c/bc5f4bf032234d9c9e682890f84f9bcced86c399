@@ -1,0 +1,22 @@
+
+bpython:S1192 "JDefine a constant instead of duplicating this literal 'PTFE v1.0' 5 times.(›Êİü
+xpython:S1192¸"ZDefine a constant instead of duplicating this literal 'Login Proxy - [PTFE v1.0]' 3 times.(íĞ¼£øÿÿÿÿ
+upython:S1192"]Define a constant instead of duplicating this literal 'Obrigado. Programa encerrado' 3 times.(¾¦Äè
+opython:S1192"RDefine a constant instead of duplicating this literal 'Encerrar programa' 6 times.(£ŸÕøÿÿÿÿ
+Lpython:S1135"4Complete the task associated to this "TODO" comment.(¨¤Äâ
+Lpython:S1135"4Complete the task associated to this "TODO" comment.(ËÇÛ¶
+Lpython:S1135"4Complete the task associated to this "TODO" comment.(¦ÃñÛ
+Qpython:S1135"4Complete the task associated to this "TODO" comment.(ûŞ©Åùÿÿÿÿ
+Qpython:S1135"4Complete the task associated to this "TODO" comment.(¶Ï©óşÿÿÿÿ
+Qpython:S1135"4Complete the task associated to this "TODO" comment.(‡Î£ôüÿÿÿÿ
+Qpython:S1135"4Complete the task associated to this "TODO" comment.(Ø±Š¡şÿÿÿÿ
+Lpython:S1135"4Complete the task associated to this "TODO" comment.(¦Ëà
+Qpython:S1135	"4Complete the task associated to this "TODO" comment.(’…Ã‡şÿÿÿÿ
+{python:S117Ã"^Rename this local variable "proxyPassword" to match the regular expression ^[_a-z][a-z0-9_]*$.(Íá¸ãıÿÿÿÿ
+rpython:S117Â"ZRename this local variable "proxyUser" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒò‰
+ypython:S117ß"\Rename this local variable "AVAPassword" to match the regular expression ^[_a-z][a-z0-9_]*$.(ñÃæóúÿÿÿÿ
+ppython:S117Ş"XRename this local variable "AVAUser" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ç°İ˜
+Rpython:S1135Ğ"4Complete the task associated to this "TODO" comment.(³†å¡ÿÿÿÿÿ
+Apython:S108Ø")Either remove or fill this block of code.(ã‘Û¾
+cpython:S3457¸"EAdd replacement fields or use a normal string instead of an f-string.(³±µíıÿÿÿÿ
+Apython:S108Ò")Either remove or fill this block of code.(ã‘Û¾

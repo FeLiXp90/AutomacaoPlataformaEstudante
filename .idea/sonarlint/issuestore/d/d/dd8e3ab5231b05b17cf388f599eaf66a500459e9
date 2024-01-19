@@ -1,0 +1,11 @@
+
+gpython:S1192"JDefine a constant instead of duplicating this literal 'PTFE v1.0' 3 times.(ÔÌ³«úÿÿÿÿ
+wpython:S1192F"ZDefine a constant instead of duplicating this literal 'Login Proxy - [PTFE v1.0]' 3 times.(íÐ¼£øÿÿÿÿ
+zpython:S117Q"^Rename this local variable "proxyPassword" to match the regular expression ^[_a-z][a-z0-9_]*$.(Íá¸ãýÿÿÿÿ
+qpython:S117P"ZRename this local variable "proxyUser" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒò‰Ž
+xpython:S117m"\Rename this local variable "AVAPassword" to match the regular expression ^[_a-z][a-z0-9_]*$.(ñÃæóúÿÿÿÿ
+opython:S117l"XRename this local variable "AVAUser" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ç°Ý˜
+Qpython:S1135^"4Complete the task associated to this "TODO" comment.(³†å¡ÿÿÿÿÿ
+@python:S108f")Either remove or fill this block of code.(ã‘Û¾
+cpython:S3457Æ"EAdd replacement fields or use a normal string instead of an f-string.(³±µíýÿÿÿÿ
+Apython:S108à")Either remove or fill this block of code.(ã‘Û¾
