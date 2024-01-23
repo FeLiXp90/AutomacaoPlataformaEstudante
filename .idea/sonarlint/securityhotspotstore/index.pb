@@ -25,3 +25,5 @@ L
 automacao_web/sheet-tests.py,6\f\6f2bd76e17fc49c8566fcde9d990b4bf09b73324
 H
 automacao_web/ztestes.py,1\6\16a5c4cc4c7e205260f8dd802063a2395867150a
+_
+/automacao_web/uploadCSV/templatefinalchaves.csv,4\5\459300ef26ff99ea0b447e870a946251448ef910

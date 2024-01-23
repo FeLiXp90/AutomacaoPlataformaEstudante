@@ -1,21 +1,23 @@
-#TODO Pensar em formas de documentar o processo, criação de registros para mapeamentos e correções de erros.
-#TODO replicar todas as alterações para o de produção.
-#TODO reduzir o número de variáveis de posições para click
-#TODO reduzir ao máximo o tempo dos time.sleep
-#TODO testar o salvamento dos templates
-#TODO renomear as imagens de forma que fiquem mais organizadas.: ex, 'partedoproceso_descricao-da-imagem'
-#TODO na pre visualização dos dados, a opção de 100 linhas não é das melhores. Muda a posição da tela e estraga o resto do código, setar pra dez, dar um ctrl end e começar de baixo pra cima até encontrar a última configuração, daí ctrl end de novo e parte pra próxima etapa
-#TODO documentar melhor as funções e seus argumentos
-#TODO corrigir linhas com enter para quebra auto (warp)
+"""
+Pensar em formas de documentar o processo, criação de registros para mapeamentos e correções de erros.
+#replicar todas as alterações para o de produção.
+#reduzir o número de variáveis de posições para click
+#reduzir ao máximo o tempo dos time.sleep
+#testar o salvamento dos templates
+#renomear as imagens de forma que fiquem mais organizadas.: ex, 'partedoproceso_descricao-da-imagem'
+#na pre visualização dos dados, a opção de 100 linhas não é das melhores. Muda a posição da tela e estraga o resto do código, setar pra dez, dar um ctrl end e começar de baixo pra cima até encontrar a última configuração, daí ctrl end de novo e parte pra próxima etapa
+#documentar melhor as funções e seus argumentos
+#corrigir linhas com enter para quebra auto (warp)
+"""
 
 import tkinter as tk, pandas as pd, pymsgbox as pmsg, sys, os
 from tkinter import filedialog
 from datetime import datetime
 
-OBRIGADOPROGRAMAENCERRADO = 'Obrigado. Programa encerrado'
-ENCERRARPROGRAMA = 'Encerrar programa'
-LOGINPROXY = 'Login Proxy - [PTFE v1.0]'
-PTFEE = 'PTFE v1.0'
+programa_encerrado = 'Obrigado. Programa encerrado'
+encerrar_programa = 'Encerrar programa'
+login_proxy = 'Login Proxy - [PTFE v1.0]'
+PTFE = 'PTFE v1.0'
 
 def abrir_seletor_arquivos():
     while True:
@@ -30,20 +32,20 @@ def abrir_seletor_arquivos():
         if caminho_arquivo:
             confirmacao = pmsg.confirm(text=f'Você selecionou o arquivo:\n{caminho_arquivo}\nDeseja continuar?',
                                        title='Confirmação de arquivo - [PTFE v1.0]',
-                                       buttons=['Confirmo', 'Escolher novamente', ENCERRARPROGRAMA])
+                                       buttons=['Confirmo', 'Escolher novamente', encerrar_programa])
             if confirmacao == 'Confirmo':
                 return caminho_arquivo
-            elif confirmacao == ENCERRARPROGRAMA:
-                pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
-                           title=PTFEE)
+            elif confirmacao == encerrar_programa:
+                pmsg.alert(text=programa_encerrado,
+                           title=PTFE)
                 sys.exit()
         else:
             escolha = pmsg.confirm(text='Oops, nenhum arquivo selecionado.',
                                    title='Erro - [PTFE v1.0]',
-                                   buttons=['Escolher novamente', ENCERRARPROGRAMA])
-            if escolha == ENCERRARPROGRAMA:
-                pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
-                           title=PTFEE)
+                                   buttons=['Escolher novamente', encerrar_programa])
+            if escolha == encerrar_programa:
+                pmsg.alert(text=programa_encerrado,
+                           title=PTFE)
                 sys.exit()
 
 def nome_curso(shortname):
@@ -83,7 +85,7 @@ df_filtrado_copia['fullname'] = df_filtrado_copia['IdentificacaoCurso'].apply(no
 df_filtrado_copia = df_filtrado_copia.rename(columns={'IdentificacaoCurso': 'shortname'})
 
 # Adicione a coluna 'category' com o valor 8827 para todas as linhas
-df_filtrado_copia['category'] = 8827
+df_filtrado_copia['category'] = 8827 #TODO Atualiuzar para o de produção
 
 #Verifica se já existe um templatefinal anterior e faz um backup para não sobrescrever
 caminho_arquivo = 'uploadCSV/templatefinal.csv'
@@ -117,13 +119,12 @@ df_filtrado_copia[['shortname', 'fullname', 'category']].to_csv(caminho_arquivo,
 
 
 
-
 import psutil, pyautogui as pa, time
 
-#abrindo chrome
+# abrindo chrome
 def is_chrome_running():
-    #verifica se o chrome está aberto com a utilização da lib psutil
-    for process in psutil.process_iter(['pid', 'name']): #pid solicita o processID
+    # verifica se o chrome está aberto com a utilização da lib psutil
+    for process in psutil.process_iter(['pid', 'name']): # pid solicita o processID
         if 'chrome.exe' in process.info['name'].lower():
             return True
     return False
@@ -142,7 +143,7 @@ def mult_img_selection(img_list, confidence_level):
             return pos_arq  # Retorna a posição se a imagem for encontrada
         except pa.ImageNotFoundException:
             continue
-    pmsg.alert(text='ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.', title=PTFEE)
+    pmsg.alert(text='ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.', title=PTFE)
     sys.exit()
 
 def select_drop_down_list_exact(list_file_name, img_list, confidence_level_dropdown, confidence_level_options):
@@ -187,7 +188,7 @@ def login_verification(nome_arquivo):
         time.sleep(.5)  # pausa para verificar se o login foi correto.
         pos_login_proxy = pa.locateOnScreen(nome_arquivo, confidence=0.7)
         if pos_login_proxy is not None:
-            pmsg.alert(text='Erro de digitação, tente novamente.', title=LOGINPROXY, button = 'Tentar novamente')
+            pmsg.alert(text='Erro de digitação, tente novamente.', title=login_proxy, button = 'Tentar novamente')
             return True
     except pa.ImageNotFoundException:
         return False
@@ -197,8 +198,8 @@ def login_proxy():
     #também cria um loop para verificar se o login foi digitado corretamente
     time.sleep(1) #pausa para esperar o chrome carregar.
     while True:
-        proxy_user = pmsg.prompt(text='Digite seu nome de usuário', title=LOGINPROXY)
-        proxy_password = pmsg.password(text='Digite sua senha', title=LOGINPROXY, mask='*')
+        proxy_user = pmsg.prompt(text='Digite seu nome de usuário', title=login_proxy)
+        proxy_password = pmsg.password(text='Digite sua senha', title=login_proxy, mask='*')
         pa.write(proxy_user)
         pa.press('tab')
         pa.write(proxy_password)
@@ -313,13 +314,13 @@ select_drop_down_list_dual('media/previsualizar_forcar-modalidade-grupo.png', 0.
 select_drop_down_list_dual('media/previsualizar_mostrar-livro-notas.png', 0.8, 'up')
 
 #Formato de blocos
-formato = pmsg.confirm(text='Selecione o formato do curso: Blocos ou Tópicos.', title='Formato de curso - [PTFE v1.0]', buttons=['Blocos', 'Tópicos', ENCERRARPROGRAMA])
+formato = pmsg.confirm(text='Selecione o formato do curso: Blocos ou Tópicos.', title='Formato de curso - [PTFE v1.0]', buttons=['Blocos', 'Tópicos', encerrar_programa])
 
 if formato == 'Blocos':
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-blocos-op-1.png', 'media/previsualizar_formato-curso-blocos-op-2.png'], 0.7, 0.9 )
-elif formato == ENCERRARPROGRAMA:
-    pmsg.alert(text=OBRIGADOPROGRAMAENCERRADO,
-               title=PTFEE)
+elif formato == encerrar_programa:
+    pmsg.alert(text=programa_encerrado,
+               title=PTFE)
     sys.exit()
 else:
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-topicos-op-1.png', 'media/previsualizar_formato-curso-topicos-op-2.png'], 0.7, 0.9 )
@@ -340,7 +341,7 @@ try:
     pos_screen = pa.locateCenterOnScreen('media/sem-categoria.png', confidence = 0.7)
 except pa.ImageNotFoundException:
     pmsg.alert(text='ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.',
-               title=PTFEE)
+               title=PTFE)
     sys.exit()
 
 #carregar cursos
