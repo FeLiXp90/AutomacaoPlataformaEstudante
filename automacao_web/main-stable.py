@@ -40,7 +40,7 @@ def abrir_seletor_arquivos():
                            title=PTFE)
                 sys.exit()
         else:
-            escolha = pmsg.confirm(text='Oops, nenhum arquivo selecionado.',
+            escolha = pmsg.confirm(text='OPS, nenhum arquivo selecionado.',
                                    title='Erro - [PTFE v1.0]',
                                    buttons=['Escolher novamente', encerrar_programa])
             if escolha == encerrar_programa:
@@ -66,26 +66,38 @@ def nome_curso(shortname):
 
 # Chama a função para abrir o seletor de arquivos dentro de um loop
 while True:
-    df = pd.read_excel(abrir_seletor_arquivos(), sheet_name='Matriculas_Novas')
+    df_usuarios = pd.read_excel(abrir_seletor_arquivos(), sheet_name='New_Enrolment')
+    df_professores = pd.read_excel(abrir_seletor_arquivos(), sheet_name='New_Enrolment')
 
-    if not df.empty:
+    if not df_usuarios.empty:
+        # Faça o que quiser com "arquivo_selecionado"
+        break  # Sai do loop se o arquivo for selecionado
+    if not df_professores.empty:
         # Faça o que quiser com "arquivo_selecionado"
         break  # Sai do loop se o arquivo for selecionado
 
 # Filtre as linhas onde 'Curso Existente?' é 'NÃO'
-df_filtrado = df[df['Curso Existente?'] == 'NÃO']
+df_filtrado_usuarios = df_usuarios[df_usuarios['Curso Existente?'] == 'NÃO']
+df_filtrado_professores = df_professores[df_professores['OBS:IdentificacaoCurso'] == 'NOVO']
 
 # Crie uma cópia do DataFrame filtrado
-df_filtrado_copia = df_filtrado.copy()
+df_filtrado_copia_usuarios = df_filtrado_usuarios.copy()
+df_filtrado_copia_professores = df_filtrado_professores.copy()
 
 # Aplicar a função à cópia
-df_filtrado_copia['fullname'] = df_filtrado_copia['IdentificacaoCurso'].apply(nome_curso)
+df_filtrado_copia_usuarios['fullname'] = df_filtrado_copia_usuarios['IdentificacaoCurso'].apply(nome_curso)
+df_filtrado_copia_professores['fullname'] = df_filtrado_copia_professores['IdentificacaoCurso'].apply(nome_curso)
 
 # Renomeie as colunas
-df_filtrado_copia = df_filtrado_copia.rename(columns={'IdentificacaoCurso': 'shortname'})
+df_filtrado_copia_usuarios = df_filtrado_copia_usuarios.rename(columns={'IdentificacaoCurso': 'shortname'})
+df_filtrado_copia_professores = df_filtrado_copia_professores.rename(columns={'IdentificacaoCurso': 'shortname'})
 
 # Adicione a coluna 'category' com o valor 8827 para todas as linhas
-df_filtrado_copia['category'] = 8827 #TODO Atualiuzar para o de produção
+df_filtrado_copia_usuarios['category'] = 8827
+df_filtrado_copia_professores['category'] = 8827 #TODO Atualiuzar para o de produção
+
+# Concatene os DataFrames
+df_final = pd.concat([df_filtrado_copia_usuarios, df_filtrado_copia_professores], ignore_index=True)
 
 #Verifica se já existe um templatefinal anterior e faz um backup para não sobrescrever
 caminho_arquivo = 'uploadCSV/templatefinal.csv'
@@ -105,16 +117,8 @@ if os.path.exists(caminho_arquivo):
     # Renomeia o arquivo existente
     os.rename(caminho_arquivo, 'uploadCSV/' + novo_nome_arquivo)
 
-# Salvar o DataFrame em um arquivo CSV
-df_filtrado_copia[['shortname', 'fullname', 'category']].to_csv(caminho_arquivo, sep=';', index=False)
-
-
-
-
-
-
-
-
+# Salve o DataFrame em um arquivo CSV
+df_final[['shortname', 'fullname', 'category']].to_csv('uploadCSV/templatefinal.csv', sep=';', index=False)
 
 
 
@@ -185,7 +189,7 @@ def select_drop_down_list_dual(list_file_name, confidence_level_dropdown, direct
 def login_verification(nome_arquivo):
     #verifica se as credenciais informadas em qualquer seção de login foram as corretas
     try:
-        time.sleep(.5)  # pausa para verificar se o login foi correto.
+        time.sleep(5)  # pausa para verificar se o login foi correto.
         pos_login_proxy = pa.locateOnScreen(nome_arquivo, confidence=0.7)
         if pos_login_proxy is not None:
             pmsg.alert(text='Erro de digitação, tente novamente.', title=login_proxy, button = 'Tentar novamente')
