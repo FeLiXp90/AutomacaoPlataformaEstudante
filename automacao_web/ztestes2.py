@@ -13,7 +13,25 @@ programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
 login_proxy = 'Login Proxy - [PTFE v1.0]'
 PTFE = 'PTFE v1.0'
-
+desenho = """
+⡏⠉⠉⠩⢭⣉⣩⣭⣉⠉⠉⠉⠉⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡇⠄⠄⣠⠆⣿⣿⢤⣽⢷⣠⣤⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡇⠄⣼⠃⠄⣿⠉⢸⡇⣽⢃⡀⠣⢸⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+⡇⠈⢿⡄⠄⣿⠦⣼⡻⠶⣾⠄⠄⢸⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+⡇⠄⠈⠳⢦⣟⣠⢸⡱⡄⠋⠄⠄⢸⣷⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣾
+⡇⠄⠄⠄⠼⠻⠄⠘⠓⠙⠛⠄⠄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢹
+⣧⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⡼
+⢸⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡇
+⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁
+⠄⠸⡟⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢻⠇⠄
+⠄⠄⠹⡄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢠⠏⠄⠄
+⠄⠄⠄⠙⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⠋⠄⠄⠄
+⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠙⠿⡛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢛⠟⠋⠄⠄⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠄⠄⠈⠳⢤⡀⠄⠄⠄⠄⢀⡤⠞⠁⠄⠄⠄⠄⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⠲⢤⡤⠖⠉⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄
+"""
 #time.sleep(3) #apagar
 
 def mult_img_selection(img_list, confidence_level):
@@ -98,7 +116,10 @@ def identificar_informacoes(text):
 
     # Verifica se as correspondências foram encontradas antes de acessar os grupos
     turma_grupo = turma.group() if turma else "EM"
-    etapa_grupo = etapa.group(1) if etapa else "1a_etapa"  # Padrão "1a_etapa" se não encontrar
+    etapa_grupo = etapa.group(1) if etapa else None
+    if etapa_grupo is None:
+        pmsg.alert(text=f'ALERTA. ETAPA NÃO ENCONTRADA: \nReveja o código.\n{desenho}', title=PTFE)
+        sys.exit() # Erro na etapa
     tipo_curso_grupo = tipo_curso_match.group(1) if tipo_curso_match else "EF"  # Padrão "EF" se não encontrar
     ano_semestre_grupo1 = ano_semestre.group(1) if ano_semestre and ano_semestre.group(1) else ano_semestre.group(3) if ano_semestre else None
     ano_semestre_grupo2 = ano_semestre.group(2) if ano_semestre and ano_semestre.group(2) else None
@@ -116,7 +137,7 @@ def identificar_informacoes(text):
     return nome_arquivo
 
 # Exemplo de uso
-nome_breve = "EEEFFRANCISCOALVESMENDES_5ªE6ªMULTIN01EJA-EF_6ª ETAPA_PIPAT_INEP32070853_281095_2023/1"
+nome_breve = "EEEFFRANCISCOALVESMENDES_5ªE6ªMULTIN01EJA-EF_ª ETAPA_PIPAT_INEP32070853_281095_2023/1"
 nome_backup = identificar_informacoes(nome_breve)
 
 # Exibe as informações identificadas

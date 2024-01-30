@@ -24,6 +24,25 @@ programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
 login_proxy = 'Login Proxy - [PTFE v1.0]'
 PTFE = 'PTFE v1.0'
+desenho = """
+⡏⠉⠉⠩⢭⣉⣩⣭⣉⠉⠉⠉⠉⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡇⠄⠄⣠⠆⣿⣿⢤⣽⢷⣠⣤⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡇⠄⣼⠃⠄⣿⠉⢸⡇⣽⢃⡀⠣⢸⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+⡇⠈⢿⡄⠄⣿⠦⣼⡻⠶⣾⠄⠄⢸⡇⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢸
+⡇⠄⠈⠳⢦⣟⣠⢸⡱⡄⠋⠄⠄⢸⣷⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣾
+⡇⠄⠄⠄⠼⠻⠄⠘⠓⠙⠛⠄⠄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⡏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⢹
+⣧⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⡼
+⢸⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⡇
+⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁
+⠄⠸⡟⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢻⠇⠄
+⠄⠄⠹⡄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⢠⠏⠄⠄
+⠄⠄⠄⠙⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⠋⠄⠄⠄
+⠄⠄⠄⠄⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠙⠿⡛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⢛⠟⠋⠄⠄⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠄⠄⠈⠳⢤⡀⠄⠄⠄⠄⢀⡤⠞⠁⠄⠄⠄⠄⠄⠄⠄⠄
+⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠉⠲⢤⡤⠖⠉⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄
+"""
 
 def abrir_seletor_arquivos():
     while True:
@@ -41,12 +60,12 @@ def abrir_seletor_arquivos():
             if confirmacao == 'Confirmo':
                 return caminho_arquivo
             elif confirmacao == encerrar_programa:
-                pmsg.alert(text=programa_encerrado, title=PTFE)
+                pmsg.alert(text=f'{programa_encerrado}\n{desenho}', title=PTFE)
                 sys.exit()
         else:
             escolha = pmsg.confirm(text='OPS, nenhum arquivo selecionado.', title='Erro - [PTFE v1.0]', buttons=['Escolher novamente', encerrar_programa])
             if escolha == encerrar_programa:
-                pmsg.alert(text=programa_encerrado, title=PTFE)
+                pmsg.alert(text=f'{programa_encerrado}\n{desenho}', title=PTFE)
                 sys.exit()
 
 def nome_curso(shortname):
@@ -163,7 +182,7 @@ def mult_img_selection(img_list, confidence_level):
             return pos_arq  # Retorna a posição se a imagem for encontrada
         except pa.ImageNotFoundException:
             continue
-    pmsg.alert(text='ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.', title=PTFE)
+    pmsg.alert(text=f'ALERTA. Nenhuma imagem foi encontrada: \nReveja o código.\n{desenho}', title=PTFE)
     sys.exit()
 
 def select_drop_down_list_exact(list_file_name, img_list, confidence_level_dropdown, confidence_level_options):
@@ -341,15 +360,17 @@ formato = pmsg.confirm(text='Selecione o formato do curso: Blocos ou Tópicos.',
 
 if formato == 'Blocos':
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-blocos-op-1.png', 'media/previsualizar_formato-curso-blocos-op-2.png'], 0.7, 0.9 )
-elif formato == encerrar_programa:
-    pmsg.alert(text=programa_encerrado, title=PTFE)
-    sys.exit()
-else:
+elif formato == 'Tópicos':
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-topicos-op-1.png', 'media/previsualizar_formato-curso-topicos-op-2.png'], 0.7, 0.9 )
+elif formato == encerrar_programa:
+    pmsg.alert(text=f'{programa_encerrado}\n{desenho}', title=PTFE)
+    sys.exit()
+
+time.sleep(1)
 
 #habilitar data
 try:
-    pos_screen = pa.locateCenterOnScreen('media/habilitar-data-termino-curso.png', confidence=0.9)
+    pos_screen = pa.locateCenterOnScreen('media/habilitar-data-termino-curso.png', confidence=0.8)
     pa.click(pos_screen, duration = .5)
 except pa.ImageNotFoundException:
     pass
@@ -362,7 +383,7 @@ time.sleep(.2) #para dar tempo do scroll exectuar tranquilamente
 try:
     pos_screen = pa.locateCenterOnScreen('media/sem-categoria.png', confidence = 0.7)
 except pa.ImageNotFoundException:
-    pmsg.alert(text='ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.', title=PTFE)
+    pmsg.alert(text=f'ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.\n{desenho}', title=PTFE)
     sys.exit()
 
 #carregar cursos
@@ -380,7 +401,7 @@ continua = pmsg.confirm(text='Os cursos foram carregados?', title='Carregamento:
 if continua == 'Sim':
     pass
 else:
-    pmsg.alert(text=programa_encerrado, title=PTFE)
+    pmsg.alert(text=f'{programa_encerrado}\n{desenho}', title=PTFE)
     sys.exit()
 
 
