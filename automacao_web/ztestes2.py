@@ -86,9 +86,9 @@ import re
 def identificar_informacoes(text):
     # Define padrões de expressões regulares para montar o respectivo nome do arquivo de backup
     padrao_turma = re.compile(r'EJA')
-    padrao_etapa = re.compile(r'_([\d]+ª\sETAPA)')
+    padrao_etapa = re.compile(r'_([\d]+ª\sETAPA|[\d]+ªN)')
     padrao_tipo_curso = re.compile(r'_([^_]+)_INEP')
-    padrao_ano_semestre = re.compile(r'_(\d+)/(\d+)')
+    padrao_ano_semestre = re.compile(r'_(\d+)/(\d+)|(\d{4})$')
 
     # Procura por correspondências nos padrões no texto fornecido
     turma = re.search(padrao_turma, text)
@@ -97,11 +97,14 @@ def identificar_informacoes(text):
     ano_semestre = re.search(padrao_ano_semestre, text)
 
     # Verifica se as correspondências foram encontradas antes de acessar os grupos
-    turma_grupo = turma.group() if turma else None
+    turma_grupo = turma.group() if turma else "EM"
     etapa_grupo = etapa.group(1) if etapa else "1a_etapa"  # Padrão "1a_etapa" se não encontrar
     tipo_curso_grupo = tipo_curso_match.group(1) if tipo_curso_match else "EF"  # Padrão "EF" se não encontrar
-    ano_semestre_grupo1 = ano_semestre.group(1) if ano_semestre else None
-    ano_semestre_grupo2 = ano_semestre.group(2) if ano_semestre else None
+    ano_semestre_grupo1 = ano_semestre.group(1) if ano_semestre and ano_semestre.group(1) else ano_semestre.group(3) if ano_semestre else None
+    ano_semestre_grupo2 = ano_semestre.group(2) if ano_semestre and ano_semestre.group(2) else None
+
+    # Cria o nome do arquivo de backup conforme as informações extraídas
+    nome_arquivo = f"{turma_grupo}_{ano_semestre_grupo1}-{ano_semestre_grupo2}_{etapa_grupo}_{tipo_curso_grupo}"
 
     # Cria o nome do arquivo de backup conforme as informações extraídas
     if 'EJA' in text:
@@ -113,7 +116,7 @@ def identificar_informacoes(text):
     return nome_arquivo
 
 # Exemplo de uso
-nome_breve = "EEEMDUNASDEITAUNAS_2ªN01-EM-HUM_PIP_INEP32078650_272285_2023"
+nome_breve = "EEEFFRANCISCOALVESMENDES_5ªE6ªMULTIN01EJA-EF_6ª ETAPA_PIPAT_INEP32070853_281095_2023/1"
 nome_backup = identificar_informacoes(nome_breve)
 
 # Exibe as informações identificadas
