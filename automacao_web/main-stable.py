@@ -8,11 +8,17 @@ Pensar em formas de documentar o processo, criação de registros para mapeament
 #na pre visualização dos dados, a opção de 100 linhas não é das melhores. Muda a posição da tela e estraga o resto do código, setar pra dez, dar um ctrl end e começar de baixo pra cima até encontrar a última configuração, daí ctrl end de novo e parte pra próxima etapa
 #documentar melhor as funções e seus argumentos
 #corrigir linhas com enter para quebra auto (warp)
+verificar se sempre terão duas planilhas (usuário + professores)
+verificar se o id 560 sumiu com um novo upload
+fazer verificação secundária para ver se todos os cursos foram upados?
+nesse modelo teremos problemas para categorizar salas de ensino médio, skipar se não conseguir ler
 """
 
 import tkinter as tk, pandas as pd, pymsgbox as pmsg, sys, os
 from tkinter import filedialog
 from datetime import datetime
+import psutil, pyautogui as pa, time, pyperclip as pclip, pytesseract as pyts
+from PIL import Image
 
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
@@ -30,22 +36,17 @@ def abrir_seletor_arquivos():
 
         # Verifica se o usuário selecionou um arquivo ou cancelou a operação
         if caminho_arquivo:
-            confirmacao = pmsg.confirm(text=f'Você selecionou o arquivo:\n{caminho_arquivo}\nDeseja continuar?',
-                                       title='Confirmação de arquivo - [PTFE v1.0]',
-                                       buttons=['Confirmo', 'Escolher novamente', encerrar_programa])
+            confirmacao = pmsg.confirm(text=f'Você selecionou o arquivo:\n{caminho_arquivo}\nDeseja continuar?', title='Confirmação de arquivo - [PTFE v1.0]', buttons=['Confirmo', 'Escolher novamente', encerrar_programa])
+
             if confirmacao == 'Confirmo':
                 return caminho_arquivo
             elif confirmacao == encerrar_programa:
-                pmsg.alert(text=programa_encerrado,
-                           title=PTFE)
+                pmsg.alert(text=programa_encerrado, title=PTFE)
                 sys.exit()
         else:
-            escolha = pmsg.confirm(text='OPS, nenhum arquivo selecionado.',
-                                   title='Erro - [PTFE v1.0]',
-                                   buttons=['Escolher novamente', encerrar_programa])
+            escolha = pmsg.confirm(text='OPS, nenhum arquivo selecionado.', title='Erro - [PTFE v1.0]', buttons=['Escolher novamente', encerrar_programa])
             if escolha == encerrar_programa:
-                pmsg.alert(text=programa_encerrado,
-                           title=PTFE)
+                pmsg.alert(text=programa_encerrado, title=PTFE)
                 sys.exit()
 
 def nome_curso(shortname):
@@ -66,7 +67,9 @@ def nome_curso(shortname):
 
 # Chama a função para abrir o seletor de arquivos dentro de um loop
 while True:
+    pmsg.alert(text='Escolha a planilha de USUÁRIOS', title=PTFE)
     df_usuarios = pd.read_excel(abrir_seletor_arquivos(), sheet_name='New_Enrolment')
+    pmsg.alert(text='Escolha a planilha de PROFESSORES', title=PTFE)
     df_professores = pd.read_excel(abrir_seletor_arquivos(), sheet_name='New_Enrolment')
 
     if not df_usuarios.empty:
@@ -117,13 +120,18 @@ if os.path.exists(caminho_arquivo):
     # Renomeia o arquivo existente
     os.rename(caminho_arquivo, 'uploadCSV/' + novo_nome_arquivo)
 
+    # Adicione a última linha ao DataFrame, para controle da restauração e categorização
+    nova_linha = {'shortname': 'automatizacaoPTFE', 'fullname': 'AUTOMATIZACAO', 'category': 8827}
+    df_final = pd.concat([pd.DataFrame([nova_linha]), df_final], ignore_index=True)
+
 # Salve o DataFrame em um arquivo CSV
 df_final[['shortname', 'fullname', 'category']].to_csv('uploadCSV/templatefinal.csv', sep=';', index=False)
 
 
 
 
-import psutil, pyautogui as pa, time
+
+
 
 # abrindo chrome
 def is_chrome_running():
@@ -135,9 +143,17 @@ def is_chrome_running():
 
 def write_special_char(text):
     #essa função resolve a codificação do pa.write para escrever caracteres especiais, como ~ e ç
-    import pyperclip as pclip
     pclip.copy(text)
     pa.hotkey('ctrl', 'v')
+
+def img_to_text(img_path):
+    #extrai o texto de um print. ex.: img_path = 'media/nomedoarquivo.png'
+
+    tesseract_path = r"programs\tesseract\tesseract.exe"
+    pyts.pytesseract.tesseract_cmd = tesseract_path
+    image = Image.open(img_path)
+    texto = pyts.image_to_string(image)
+    return texto
 
 def mult_img_selection(img_list, confidence_level):
     # Seleção entre diferentes imagens possíveis presentes na tela
@@ -176,6 +192,7 @@ def select_drop_down_list_dual(list_file_name, confidence_level_dropdown, direct
         - list_file_name (Any): Nome do arquivo da lista suspensa.
         - confidence_level_dropdow (Any): Nível de confiança para identificar a lista suspensa.
         - direction (str): Direção para clicar na lista suspensa ('up' ou 'down').
+        - Autor: Almir
     """
     pos_list = pa.locateOnScreen(list_file_name, confidence=confidence_level_dropdown)
     pa.click(pos_list[0] + pos_list.width + 50, pos_list[1] + 20, duration=.5)
@@ -240,6 +257,39 @@ def login_plataforma_estudante():
             if login_verification('media/pos-login.png') is False:
                 break
 
+
+def send_file(file_path):
+    # envia um arquivo no menu de seleção
+
+    # parte web
+    pos_choose_file = pa.locateCenterOnScreen('media/escolha-um-arquivo.png', confidence=0.9)
+    pa.click(pos_choose_file, duration=.2)
+    time.sleep(.5)  # pausa para abrir o menu de seleção de arquivo
+
+    # diferenciação entre as imagens. Se essa opção de envio tiver sido selecionada na exec. anterior, ela vai ficar azul (como na img2 "hover")
+    pos_arq = mult_img_selection(['media/enviar-um-arquivo-1.png', 'media/enviar-um-arquivo-2.png'], 0.9)
+    if pos_arq is not None:
+        pa.click(pos_arq, duration=.2)
+        time.sleep(.2)  # pausa para carregar o menu
+        pos_escolher_arq = pa.locateCenterOnScreen('media/escolher-arquivo.png', confidence=0.7)
+        pa.click(pos_escolher_arq, duration=.2)
+    else:
+        time.sleep(.2)  # pausa para carregar o menu
+        pos_escolher_arq = pa.locateCenterOnScreen('media/escolher-arquivo.png', confidence=0.7)
+        pa.click(pos_escolher_arq, duration=.2)
+
+    # parte explorador de arquivos
+    time.sleep(1)  # pausa para carregar o explorador de arquivos
+    user_path = os.path.expanduser("~")
+    search = os.path.join(user_path, file_path)
+    write_special_char(search)
+    pa.press('enter')
+
+    # finalização do menu de seleção do arquivo
+    pos_botao_enviar_arq = pa.locateCenterOnScreen('media/pos-enviar-arq.png', confidence=0.9)
+    pa.click(pos_botao_enviar_arq, duration=.5)
+
+
 if not is_chrome_running():
     pa.press('win')
     pa.write('Chrome')
@@ -256,51 +306,20 @@ else:
     #maximização da janela do chrome
 pa.hotkey('alt', 'space')
 pa.press('x')
-    #parte web
 time.sleep(1) #pausa para a plataforma do estudante carregar
-pos_choose_file = pa.locateCenterOnScreen('media/escolha-um-arquivo.png', confidence = 0.9)
-pa.click(pos_choose_file, duration = .2)
-time.sleep(.5) #pausa para abrir o menu de seleção de arquivo
-
-    #diferenciação entre as imagens. Se essa opção de envio tiver sido selecionada na exec. anterior, ela vai ficar azul (como na img2 "hover")
-pos_arq = mult_img_selection(['media/enviar-um-arquivo-1.png','media/enviar-um-arquivo-2.png'], 0.9)
-if pos_arq is not None:
-    pa.click(pos_arq, duration = .2)
-    time.sleep(.2) #pausa para carregar o menu
-    pos_escolher_arq = pa.locateCenterOnScreen('media/escolher-arquivo.png', confidence=0.7)
-    pa.click(pos_escolher_arq, duration=.2)
-else:
-    time.sleep(.2) #pausa para carregar o menu
-    pos_escolher_arq = pa.locateCenterOnScreen('media/escolher-arquivo.png', confidence=0.7)
-    pa.click(pos_escolher_arq, duration=.2)
-
-    #parte explorador de arquivos
-time.sleep(1) #pausa para carregar o explorador de arquivos
-user_path = os.path.expanduser("~")
-file_path = os.path.join(user_path, 'Secretaria de Estado da Educação', 'Cefope - Equipe Tecnologia', 'Projetos Python',
-                                'Automação Plataforma Estudante', 'automacao_web', 'uploadCSV', 'templatefinal.CSV')
-write_special_char(file_path)
-pa.press('enter')
-
-    #finalização do menu de seleção do arquivo
-pos_botao_enviar_arq = pa.locateCenterOnScreen('media/pos-enviar-arq.png', confidence = 0.9)
-pa.click(pos_botao_enviar_arq, duration = .5)
+send_file(os.path.join('Secretaria de Estado da Educação', 'Cefope - Equipe Tecnologia', 'Projetos Python', 'Automação Plataforma Estudante', 'automacao_web', 'uploadCSV', 'templatefinal.CSV'))
 
     #configuração das opções de envio das listas suspensas)
-select_drop_down_list_exact('media/list-susp-delimitador.png', ['media/op-list-susp-delimitador-1.png',
-                        'media/op-list-susp-delimitador-2.png'], 0.7, 0.9)
+select_drop_down_list_exact('media/list-susp-delimitador.png', ['media/op-list-susp-delimitador-1.png', 'media/op-list-susp-delimitador-2.png'], 0.7, 0.9)
 
-select_drop_down_list_exact('media/list-susp-codificacao.png', ['media/op-list-susp-codificacao-1.png',
-                        'media/op-list-susp-codificacao-2.png'], 0.7, 0.9)
+select_drop_down_list_exact('media/list-susp-codificacao.png', ['media/op-list-susp-codificacao-1.png', 'media/op-list-susp-codificacao-2.png'], 0.7, 0.9)
 
-select_drop_down_list_exact('media/list-susp-linhas.png', ['media/op-list-susp-linhas-1.png',
-                        'media/op-list-susp-linhas-2.png'], 0.7, 0.9)
+select_drop_down_list_exact('media/list-susp-linhas.png', ['media/op-list-susp-linhas-1.png', 'media/op-list-susp-linhas-2.png'], 0.7, 0.9)
 
 pa.hotkey('ctrl', 'end')
 time.sleep(.2)
 
-select_drop_down_list_exact('media/list-susp-carregamento.png', ['media/op-list-susp-carregamento-1.png',
-                        'media/op-list-susp-carregamento-2.png'], 0.95, 0.9)
+select_drop_down_list_exact('media/list-susp-carregamento.png', ['media/op-list-susp-carregamento-1.png', 'media/op-list-susp-carregamento-2.png'], 0.95, 0.9)
 
 pos_pre_visual = pa.locateCenterOnScreen('media/pre-visualizar.png', confidence = 0.8)
 pa.click(pos_pre_visual)
@@ -323,8 +342,7 @@ formato = pmsg.confirm(text='Selecione o formato do curso: Blocos ou Tópicos.',
 if formato == 'Blocos':
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-blocos-op-1.png', 'media/previsualizar_formato-curso-blocos-op-2.png'], 0.7, 0.9 )
 elif formato == encerrar_programa:
-    pmsg.alert(text=programa_encerrado,
-               title=PTFE)
+    pmsg.alert(text=programa_encerrado, title=PTFE)
     sys.exit()
 else:
     select_drop_down_list_desloc('media/previsualizar_formato-curso.png',['media/previsualizar_formato-curso-topicos-op-1.png', 'media/previsualizar_formato-curso-topicos-op-2.png'], 0.7, 0.9 )
@@ -344,17 +362,57 @@ time.sleep(.2) #para dar tempo do scroll exectuar tranquilamente
 try:
     pos_screen = pa.locateCenterOnScreen('media/sem-categoria.png', confidence = 0.7)
 except pa.ImageNotFoundException:
-    pmsg.alert(text='ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.',
-               title=PTFE)
+    pmsg.alert(text='ALERTA. Os cursos não seriam categorizados: \nReveja o código e soluções.', title=PTFE)
     sys.exit()
 
 #carregar cursos
-select_drop_down_list_exact('media/list-susp-carregamento.png', ['media/op-list-susp-carregamento-1.png',
-                        'media/op-list-susp-carregamento-2.png'], 0.95, 0.9)
+select_drop_down_list_exact('media/list-susp-carregamento.png', ['media/op-list-susp-carregamento-1.png', 'media/op-list-susp-carregamento-2.png'], 0.95, 0.9)
 
 #confirmar
 pa.hotkey('ctrl', 'end')
 time.sleep(.2) #pausa para ir ao final da tela sem problemas
 
 pos_screen = pa.locateCenterOnScreen('media/previsualizar_carregar-cursos.png', confidence = 0.9)
-pa.moveTo(pos_screen, duration = 1)
+pa.moveTo(pos_screen, duration = 1) #TODO: trocar moveTo para click após finalização dos testes
+
+time.sleep(5)
+continua = pmsg.confirm(text='Os cursos foram carregados?', title='Carregamento: Status - [PTFE v1.0]', buttons=['Sim', 'Não'])
+if continua == 'Sim':
+    pass
+else:
+    pmsg.alert(text=programa_encerrado, title=PTFE)
+    sys.exit()
+
+
+
+
+
+#restauração e categorização dos cursos
+
+while True:
+    #acessando a seção de categorias dos cursos
+    pa.press('f6')
+    pa.write('http://alunodchm.sedu.es.gov.br/ava/course/index.php') #TODO substituir o link para o de produção
+    pa.press('enter')
+    time.sleep(2) #pausa para a página carregar
+
+    #abrindo sequência de cursos
+    pos_screen = pa.locateOnScreen('media/restauracao-escolha-sala-sem-categoria.png', confidence = 0.7)
+    pa.click(pos_screen[0] + 50, pos_screen[1] + pos_screen.height + 10, duration = .5)
+    time.sleep(2) #pausa para a página carregar
+
+        #verificação se deve encerrar ou não ao acessar o curso "automatização"
+    try:
+        pos_verific = pa.locateOnScreen('media/restauracao-imagem-para-encerramento.png', confidence = 0.95)
+        if pos_verific is not None:
+            pmsg.alert(text=f'Restaurações e categorizações concluídas. \n{programa_encerrado}.', title=PTFE)
+            sys.exit() #TODO: antes de sair do programa, deve excluir o automatização
+    except pa.ImageNotFoundException:
+        pass
+
+    #abrindo menu de restauração
+    pos_screen = pa.locateCenterOnScreen('media/restauracao-botao-configuracoes.png', confidence = 0.9)
+    pa.click(pos_screen, duration = 0.5)
+    pos_screen = pa.locateCenterOnScreen('media/restauracao-opcao-restaurar.png', confidence = 0.9)
+    pa.click(pos_screen, duration = 0.5)
+    time.sleep(2) #pausa para a nova guia carregar

@@ -6,13 +6,15 @@ import pytesseract as pyts
 import pymsgbox as pmsg
 import os
 from PIL import Image
+import pyperclip as pclip
+import re
 
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
 login_proxy = 'Login Proxy - [PTFE v1.0]'
 PTFE = 'PTFE v1.0'
 
-time.sleep(3) #apagar
+#time.sleep(3) #apagar
 
 def mult_img_selection(img_list, confidence_level):
     # Seleção entre diferentes imagens possíveis presentes na tela
@@ -61,63 +63,58 @@ def img_to_text(img_path):
 
     tesseract_path = r"programs\tesseract\tesseract.exe"
     pyts.pytesseract.tesseract_cmd = tesseract_path
-
     image = Image.open(img_path)
     texto = pyts.image_to_string(image)
     return texto
 
-while True:
-    #acessando a seção de categorias dos cursos
-    pa.press('f6')
-    pa.write('http://alunodchm.sedu.es.gov.br/ava/course/index.php') #TODO substituir o link para o de produção
-    pa.press('enter')
-    time.sleep(2) #pausa para a página carregar
+# #abrir configuracoes para coletar nome breve
+# pos_screen = pa.locateCenterOnScreen('media/restauracao-botao-configuracoes.png', confidence = 0.9)
+# pa.click(pos_screen, duration = .5)
+# pos_screen = pa.locateCenterOnScreen('media/restauracao-opcao-configuracoes.png', confidence = 0.9)
+# pa.click(pos_screen, duration = .5)
+#
+# #copiar nome breve
+# time.sleep(2) #pausa para a página de configurações carregar
+# pos_screen = pa.locateOnScreen('media/restauracao-nome-breve-do-curso.png', confidence = 0.95)
+# pa.click(pos_screen[0] + pos_screen.width + 50, pos_screen[1] + 20, duration = .5)
+# pa.hotkey('ctrl','a','ctrl', 'c')
+# time.sleep(0.5) #pausa para garantir o sucesso da cópia
+# nome_breve = pclip.paste()
 
-    #abrindo sequência de cursos
-    pos_screen = pa.locateOnScreen('media/restauracao-escolha-sala-sem-categoria.png', confidence = 0.7)
-    pa.click(pos_screen[0] + 50, pos_screen[1] + pos_screen.height + 10, duration = .5)
-    time.sleep(2) #pausa para a página carregar
+import re
 
-        #verificação se deve encerrar ou não ao acessar o curso "automatização"
-    try:
-        pos_verific = pa.locateOnScreen('media/restauracao-imagem-para-encerramento.png', confidence = 0.95)
-        if pos_verific is not None:
-            pmsg.alert(text=f'Restaurações e categorizações concluídas. \n{programa_encerrado}.', title=PTFE)
-            sys.exit() #TODO: antes de sair do programa, deve excluir o automatização
-    except pa.ImageNotFoundException:
-        pass
+def identificar_informacoes(text):
+    # Define padrões de expressões regulares para montar o respectivo nome do arquivo de backup
+    padrao_turma = re.compile(r'EJA')
+    padrao_etapa = re.compile(r'_([\d]+ª\sETAPA)')
+    padrao_tipo_curso = re.compile(r'_([^_]+)_INEP')
+    padrao_ano_semestre = re.compile(r'_(\d+)/(\d+)')
 
-    # abrir configuracoes para coletar nome breve
-    pos_screen = pa.locateCenterOnScreen('media/restauracao-botao-configuracoes.png', confidence=0.9)
-    pa.click(pos_screen, duration=.5)
-    pos_screen = pa.locateCenterOnScreen('media/restauracao-opcao-configuracoes.png', confidence=0.9)
-    pa.click(pos_screen, duration=.5)
+    # Procura por correspondências nos padrões no texto fornecido
+    turma = re.search(padrao_turma, text)
+    etapa = re.search(padrao_etapa, text)
+    tipo_curso_match = re.search(padrao_tipo_curso, text)
+    ano_semestre = re.search(padrao_ano_semestre, text)
 
-    # copiar nome breve
-    time.sleep(2)  # pausa para a página de configurações carregar
-    pos_screen = pa.locateOnScreen('media/restauracao-nome-breve-do-curso.png', confidence=0.95)
-    pa.click(pos_screen[0] + pos_screen.width + 50, pos_screen[1] + 20, duration=.5)
-    nome_breve = pa.hotkey('ctrl', 'a', 'ctrl', 'c')
+    # Verifica se as correspondências foram encontradas antes de acessar os grupos
+    turma_grupo = turma.group() if turma else None
+    etapa_grupo = etapa.group(1) if etapa else "1a_etapa"  # Padrão "1a_etapa" se não encontrar
+    tipo_curso_grupo = tipo_curso_match.group(1) if tipo_curso_match else "EF"  # Padrão "EF" se não encontrar
+    ano_semestre_grupo1 = ano_semestre.group(1) if ano_semestre else None
+    ano_semestre_grupo2 = ano_semestre.group(2) if ano_semestre else None
 
-    #abrindo menu de restauração
-    pos_screen = pa.locateCenterOnScreen('media/restauracao-botao-configuracoes.png', confidence = 0.9)
-    pa.click(pos_screen, duration = 0.5)
-    pos_screen = pa.locateCenterOnScreen('media/restauracao-opcao-restaurar.png', confidence = 0.9)
-    pa.click(pos_screen, duration = 0.5)
-    time.sleep(2) #pausa para a nova guia carregar
+    # Cria o nome do arquivo de backup conforme as informações extraídas
+    if 'EJA' in text:
+        nome_arquivo = f"{turma_grupo}_{ano_semestre_grupo1}-{ano_semestre_grupo2}_{etapa_grupo}_{tipo_curso_grupo}"
+    else:
+        # Aqui você pode definir como você quer que o nome do arquivo seja para strings que não contêm 'EJA'
+        nome_arquivo = f"EM_{ano_semestre_grupo1}-_{etapa_grupo}_{tipo_curso_grupo}"
 
-    #envio do arquivo no menu de restauração
-    #send_file('dsafsdsgfbdvbcvb')
+    return nome_arquivo
 
+# Exemplo de uso
+nome_breve = "EEEMDUNASDEITAUNAS_2ªN01-EM-HUM_PIP_INEP32078650_272285_2023"
+nome_backup = identificar_informacoes(nome_breve)
 
-
-    #break
-
-
-
-
-#pesquisar por -EJA
-#pesquisar pelo ano e semestre
-#pesquisar pela etapa
-#pesquisar pela variação
-
+# Exibe as informações identificadas
+print(nome_backup)
