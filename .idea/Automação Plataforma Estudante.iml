@@ -10,6 +10,9 @@
     <option name="myDocStringFormat" value="Plain" />
   </component>
   <component name="SonarLintModuleSettings">
-    <option name="uniqueId" value="5c7beb80-bc1d-4cd6-99f2-433be4685a0f" />
+    <option name="uniqueId" value="fdb882bc-48bd-47fc-9fc5-6d4c2cc5c6d6" />
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="py.test" />
   </component>
 </module>
