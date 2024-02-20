@@ -1,0 +1,54 @@
+
+“python:S1192¨"zDefine a constant instead of duplicating this literal "Can't perform this operation for unregistered loader type" 3 times.(—İÑè
+ipython:S1192´"KDefine a constant instead of duplicating this literal '.dist-info' 3 times.(üÓ»¯úÿÿÿÿ
+hpython:S1192´"JDefine a constant instead of duplicating this literal '.egg-info' 3 times.(üÓ»¯úÿÿÿÿ
+hpython:S1192í
+"ODefine a constant instead of duplicating this literal '[^A-Za-z0-9.]+' 3 times.(äÆÖì
+Mpython:S1066¡"/Merge this if statement with the enclosing one.(İµ´îüÿÿÿÿ
+Spython:S6353~";Use concise character class syntax '\d' instead of '[0-9]'.(ŸÉ™®
+Spython:S6353~";Use concise character class syntax '\d' instead of '[0-9]'.(ŸÉ™®
+Spython:S6353~";Use concise character class syntax '\d' instead of '[0-9]'.(ŸÉ™®
+Dpython:S1172¦"+Remove the unused function parameter "key".(»š„İ
+Dpython:S1172¯"+Remove the unused function parameter "key".(ÎÉèñ
+tpython:S117"WRename this parameter "moduleOrReq" to match the regular expression ^[_a-z][a-z0-9_]*$.(ü¬³ ùÿÿÿÿ
+xpython:S117â"[Rename this local variable "provDarwin" to match the regular expression ^[_a-z][a-z0-9_]*$.(´€¹ùÿÿÿÿ
+ppython:S117Û"XRename this local variable "provMac" to match the regular expression ^[_a-z][a-z0-9_]*$.(åÆ
+tpython:S117Ù"WRename this local variable "reqMac" to match the regular expression ^[_a-z][a-z0-9_]*$.(ü§íúşÿÿÿÿ
+mpython:S3776Í"TRefactor this function to reduce its Cognitive Complexity from 20 to the 15 allowed.(©±…ò
+Zpython:S5720¦"<Rename "name" to "self" or add the missing "self" parameter.(áœ€ßûÿÿÿÿ
+Upython:S5720©"<Rename "name" to "self" or add the missing "self" parameter.(ƒ•Ã‡
+Upython:S5720¬"<Rename "name" to "self" or add the missing "self" parameter.(ŒÌ‘ñ
+Upython:S5720²"<Rename "name" to "self" or add the missing "self" parameter.(ı±Çà
+Upython:S5720µ"<Rename "name" to "self" or add the missing "self" parameter.(²ÙİÕ
+\python:S5720¸"CRename "script_name" to "self" or add the missing "self" parameter.(ÛŒÇÆ
+Xpython:S5720¿"?Rename "manager" to "self" or add the missing "self" parameter.(ü³¢
+Xpython:S5720Ä"?Rename "manager" to "self" or add the missing "self" parameter.(«©¸
+]python:S5720É"?Rename "manager" to "self" or add the missing "self" parameter.(¶ì×æûÿÿÿÿ
+^python:S5720Î"ERename "resource_name" to "self" or add the missing "self" parameter.(íŞ÷õ
+]python:S5720Ñ"ERename "resource_name" to "self" or add the missing "self" parameter.(²Ì‚
+^python:S5720Ô"ERename "resource_name" to "self" or add the missing "self" parameter.(²ø‚
+mpython:S3776Ï"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(äÆ†à
+Npython:S1172£
+"0Remove the unused function parameter "filename".(‘Ÿ«Êúÿÿÿÿ
+Kpython:S1172»"-Remove the unused function parameter "extra".(…—İŞüÿÿÿÿ
+Hpython:S1172Õ"/Remove the unused function parameter "manager".(€‚ÒÈ
+Hpython:S1172Û"/Remove the unused function parameter "manager".(Òğ•
+wpython:S1186İ"YAdd a nested comment explaining why this method is empty, or complete the implementation.(Áû¹Çûÿÿÿÿ
+jpython:S1134Ê"LTake the required action to fix the issue indicated by this "FIXME" comment.(£Ë˜ÿÿÿÿÿ
+Gpython:S1481Ò".Replace unused local variable "size" with "_".(‡ı×ª
+`python:S5799Ö"GMerge these implicitly concatenated strings; or did you forget a comma?(ˆº®¡
+bpython:S3358å"IExtract this nested conditional expression into an independent statement.(¤Œ–ÿ
+apython:S3358ç"IExtract this nested conditional expression into an independent statement.(—öáY
+tpython:S117Ò"WRename this parameter "packageName" to match the regular expression ^[_a-z][a-z0-9_]*$.(’¥æÕüÿÿÿÿ
+tpython:S117™"WRename this parameter "packageName" to match the regular expression ^[_a-z][a-z0-9_]*$.(‹ù¡Ìúÿÿÿÿ
+opython:S117Ğ"WRename this parameter "packageName" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ññú
+opython:S117ä"WRename this parameter "packageName" to match the regular expression ^[_a-z][a-z0-9_]*$.(š¸±Î
+opython:S117›"WRename this parameter "packageName" to match the regular expression ^[_a-z][a-z0-9_]*$.(Õİ¹£
+Bpython:S1940—")Use the opposite operator ("!=") instead.( È×
+gpython:S1854ğ"NRemove this assignment to local variable 'new_extra'; the value is never used.(ÿ×ø
+epython:S1134…"LTake the required action to fix the issue indicated by this "FIXME" comment.(ù†Šé
+6python:S3626È"Remove this redundant return.(ÙãŞŸ
+rpython:S3776†"TRefactor this function to reduce its Cognitive Complexity from 30 to the 15 allowed.(£ˆòŠşÿÿÿÿ
+Mpython:S1135ë"4Complete the task associated to this "TODO" comment.(ÕŞ•Ê
+Bpython:S1940ù")Use the opposite operator ("!=") instead.( È×
+{python:S5717ë"]Change this default value to "None" and initialize this parameter inside the function/method.(Ôö…–úÿÿÿÿ

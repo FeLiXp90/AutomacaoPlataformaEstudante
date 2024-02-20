@@ -1,0 +1,10 @@
+
+`python:S1192x"HDefine a constant instead of duplicating this literal ':action' 4 times.(Šİî
+Fpython:S1481-".Replace unused local variable "path" with "_".(‡ĞŞĞ
+Hpython:S1481-"0Replace unused local variable "netloc" with "_".(‡ĞŞĞ
+Ipython:S1481z",Remove the unused local variable "response".(ò ïÔşÿÿÿÿ
+Npython:S1481à"0Replace unused local variable "stdout" with "_".(ÉÓñ³ûÿÿÿÿ
+Npython:S1481à"0Replace unused local variable "stderr" with "_".(ÉÓñ³ûÿÿÿÿ
+Ipython:S1481ç"0Replace unused local variable "stdout" with "_".(«¨İà
+Ipython:S1481ç"0Replace unused local variable "stderr" with "_".(«¨İà
+mpython:S3776í"TRefactor this function to reduce its Cognitive Complexity from 19 to the 15 allowed.(Å¹É±

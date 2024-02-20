@@ -1,0 +1,8 @@
+
+qpython:S117"YRename this local variable "attrName" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÊÙâ
+rpython:S117"ZRename this local variable "attrValue" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÊÙâ
+opython:S1542Ë"QRename function "replaceWith" to match the regular expression ^[a-z_][a-z0-9_]*$.(¿®÷§şÿÿÿÿ
+kpython:S1542Î"RRename function "removeQuotes" to match the regular expression ^[a-z_][a-z0-9_]*$.(ƒÊó–
+qpython:S1542Ñ"SRename function "withAttribute" to match the regular expression ^[a-z_][a-z0-9_]*$.(éÊ¸€üÿÿÿÿ
+mpython:S1542Ô"ORename function "withClass" to match the regular expression ^[a-z_][a-z0-9_]*$.(¨òÌÔıÿÿÿÿ
+rpython:S1542×"TRename function "matchOnlyAtCol" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ô×€¢úÿÿÿÿ

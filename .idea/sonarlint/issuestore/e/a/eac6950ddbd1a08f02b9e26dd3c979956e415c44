@@ -1,0 +1,22 @@
+
+epython:S1542¼"LRename function "IntVar" to match the regular expression ^[a-z_][a-z0-9_]*$.(ê”ö§
+hpython:S1854µ"JRemove this assignment to local variable 'gvars'; the value is never used.(¦±‘ñşÿÿÿÿ
+mpython:S3776š"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(…ï‰„
+ipython:S2710ê"QRename "mcls" to a valid class parameter name or add the missing class parameter.(Ê°¹
+Apython:S108ì")Either remove or fill this block of code.(ã‘Û¾
+rpython:S3776Ì"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(’¿¡Íşÿÿÿÿ
+rpython:S3776ã"TRefactor this function to reduce its Cognitive Complexity from 23 to the 15 allowed.(¯ùÑÓıÿÿÿÿ
+hpython:S1542¸"ORename function "TypedDict" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ó¢Î˜
+mpython:S1542­"ORename function "TypeAlias" to match the regular expression ^[a-z_][a-z0-9_]*$.(œƒÒ·üÿÿÿÿ
+opython:S1542ƒ"QRename function "Concatenate" to match the regular expression ^[a-z_][a-z0-9_]*$.(âİß“øÿÿÿÿ
+mpython:S1542¨"ORename function "TypeGuard" to match the regular expression ^[a-z_][a-z0-9_]*$.(İ€Ô„ıÿÿÿÿ
+qpython:S1542»"SRename function "LiteralString" to match the regular expression ^[a-z_][a-z0-9_]*$.(Üï¬üıÿÿÿÿ
+hpython:S1542Ò"JRename function "Self" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ãì‚ğÿÿÿÿÿ
+ipython:S1542ç"KRename function "Never" to match the regular expression ^[a-z_][a-z0-9_]*$.(˜€·úÿÿÿÿ
+lpython:S1542†"NRename function "Required" to match the regular expression ^[a-z_][a-z0-9_]*$.(×©ËŠıÿÿÿÿ
+ipython:S1542š"QRename function "NotRequired" to match the regular expression ^[a-z_][a-z0-9_]*$.(òà­!
+jpython:S1542Œ"LRename function "Unpack" to match the regular expression ^[a-z_][a-z0-9_]*$.(«áğúúÿÿÿÿ
+opython:S2710±"QRename "self" to a valid class parameter name or add the missing class parameter.(”¸®šıÿÿÿÿ
+opython:S2710ş"QRename "self" to a valid class parameter name or add the missing class parameter.(”¸®šıÿÿÿÿ
+mpython:S3776´"TRefactor this function to reduce its Cognitive Complexity from 22 to the 15 allowed.(•€êÂ
+hpython:S1542â"PRename function "NamedTuple" to match the regular expression ^[a-z_][a-z0-9_]*$.(¹ö©@

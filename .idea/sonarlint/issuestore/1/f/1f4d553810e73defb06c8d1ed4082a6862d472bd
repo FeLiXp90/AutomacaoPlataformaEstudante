@@ -1,0 +1,7 @@
+
+tpython:S1542<"WRename function "SOCKSProxyManager" to match the regular expression ^[a-z_][a-z0-9_]*$.(þÐž‚ûÿÿÿÿ
+mpython:S3776í"TRefactor this function to reduce its Cognitive Complexity from 23 to the 15 allowed.(ƒÓƒÁ
+rpython:S3776²"TRefactor this function to reduce its Cognitive Complexity from 28 to the 15 allowed.(¤¡”âýÿÿÿÿ
+Apython:S108á")Either remove or fill this block of code.(ã‘Û¾
+Rpython:S1135ù"4Complete the task associated to this "TODO" comment.(—šÌàýÿÿÿÿ
+ppython:S5713"WRemove this redundant Exception class; it derives from another which is already caught.(‚Ï€Õ
