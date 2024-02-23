@@ -18,9 +18,9 @@ def update_csv(tipo_log):
     - Autor: Almir
     """
 
-    df1 = pd.read_csv('logs/log_geral_executados_20240215_170046.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
-    df2 = pd.read_csv('logs/log_geral_executados_recategorizacao_20240216_115839.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
-    df3 = pd.read_csv('logs/log_geral_executados_ensino_medio_20240216_175704.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
+    df1 = pd.read_csv('logs/2024_02_15/log_geral_executados_20240215_170046.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
+    df2 = pd.read_csv('logs/2024_02_15/log_geral_executados_recategorizacao_20240216_115839.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
+    df3 = pd.read_csv('logs/2024_02_15/log_geral_executados_ensino_medio_20240216_175704.csv', encoding = 'utf-8', sep = ';') #substitua o nome do arquivo
 
     df_final = pd.merge(df1, df2, on='shortname', how='left', validate='one_to_one')
     df_final['nome_backup'] = df_final['nome_backup_y'].fillna(df_final['nome_backup_x'])
@@ -30,6 +30,7 @@ def update_csv(tipo_log):
 
     # Substituir as informações resultantes com base no terceiro CSV
     df_final = pd.merge(df_final, df3, on='shortname', how='left', validate='one_to_one')
+    df_final.to_csv('temporary/teste1.csv', sep = ';', index = False)
     df_final['nome_backup'] = df_final['nome_backup_y'].fillna(df_final['nome_backup_x'])
     df_final['nome_categoria'] = df_final['nome_categoria_y'].fillna(df_final['nome_categoria_x'])
     df_final['nome_imagem'] = df_final['nome_imagem_y'].fillna(df_final['nome_imagem_x'])

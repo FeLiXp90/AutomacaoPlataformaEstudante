@@ -1,0 +1,6 @@
+
+kpython:S1192Ê"MDefine a constant instead of duplicating this literal r'(EJA-\D{2})' 3 times.(Ð£óüýÿÿÿÿ
+vpython:S117Ù"YRename this local variable "etapaEJA" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒÝ¼­ÿÿÿÿÿ
+upython:S117Ü"XRename this local variable "etapaEM" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÎ¨ëüÿÿÿÿ
+mpython:S5850Î"TGroup parts of the regex together to make the intended operator precedence explicit.(Êƒó×
+mpython:S5850ø"TGroup parts of the regex together to make the intended operator precedence explicit.(Žê¿Ã

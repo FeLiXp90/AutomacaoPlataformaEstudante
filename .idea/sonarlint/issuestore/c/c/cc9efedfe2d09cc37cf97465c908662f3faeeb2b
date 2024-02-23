@@ -1,12 +1,0 @@
-
-Lpython:S1066g"/Merge this if statement with the enclosing one.(é—éýÿÿÿÿ
-}python:S117S"aRename this local variable "internetSettings" to match the regular expression ^[_a-z][a-z0-9_]*$.(àÓå°üÿÿÿÿ
-spython:S117X"\Rename this local variable "proxyEnable" to match the regular expression ^[_a-z][a-z0-9_]*$.(´ƒˆ­
-upython:S117Z"^Rename this local variable "proxyOverride" to match the regular expression ^[_a-z][a-z0-9_]*$.(®ñ½©
-mpython:S3776…"TRefactor this function to reduce its Cognitive Complexity from 26 to the 15 allowed.(ŒŒæ®
-lpython:S3776Ç"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(¶¡Ï 
->python:S6659É" Use `not` and `startswith` here.(ö÷‰«ùÿÿÿÿ
-rpython:S3776ü"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(†öõêüÿÿÿÿ
-Lpython:S1481â".Replace unused local variable "host" with "_".(ÉÔ—Ÿúÿÿÿÿ
-Lpython:S1481â".Replace unused local variable "port" with "_".(ÉÔ—Ÿúÿÿÿÿ
-Ppython:S1481¬"2Replace unused local variable "fragment" with "_".(ƒ®ç½ýÿÿÿÿ

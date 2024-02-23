@@ -1,20 +1,0 @@
-
-python:S1192À"aDefine a constant instead of duplicating this literal "colorama.ansitowin32.winapi_test" 3 times.(„Ì±ıÿÿÿÿ
-{python:S1192¿"]Define a constant instead of duplicating this literal "colorama.ansitowin32.os.name" 3 times.(½ÜÇòøÿÿÿÿ
-wpython:S117"[Rename this local variable "mockStream" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œş°ãıÿÿÿÿ
-:python:S5906""Consider using "assertIs" instead.(šÔº
-upython:S117"^Rename this local variable "mockConverter" to match the regular expression ^[_a-z][a-z0-9_]*$.(Îò‘Ì
-wpython:S117"[Rename this local variable "mockStream" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œş°ãıÿÿÿÿ
-upython:S117#"^Rename this local variable "mockConverter" to match the regular expression ^[_a-z][a-z0-9_]*$.(Îò‘Ì
-upython:S117,"^Rename this local variable "mockConverter" to match the regular expression ^[_a-z][a-z0-9_]*$.(Îò‘Ì
-wpython:S117*"[Rename this local variable "mockStream" to match the regular expression ^[_a-z][a-z0-9_]*$.(µĞÔáûÿÿÿÿ
-Cpython:S1481-"+Remove the unused local variable "excinfo".(°ŒõÀ
-Apython:S59065"$Consider using "assertTrue" instead.(Í©ùĞüÿÿÿÿ
-Apython:S5906;"$Consider using "assertTrue" instead.(Í©ùĞüÿÿÿÿ
-wpython:S117@"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘š·¼úÿÿÿÿ
-wpython:S117J"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘š·¼úÿÿÿÿ
-wpython:S117P"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(£Ä¿´øÿÿÿÿ
-wpython:S117U"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘š·¼úÿÿÿÿ
-wpython:S117a"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘š·¼úÿÿÿÿ
-xpython:S117é"[Rename this local variable "mockStdout" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘š·¼úÿÿÿÿ
-wpython:S117ˆ"_Rename this local variable "SetConsoleMode" to match the regular expression ^[_a-z][a-z0-9_]*$.(ß‘şŞ

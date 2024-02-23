@@ -1,17 +1,0 @@
-
-dpython:S1192ø"FDefine a constant instead of duplicating this literal '#push' 6 times.(Ê¤Œçþÿÿÿÿ
-Vpython:S5857"9Replace this use of a reluctant quantifier with "[^\n]*".(ÞÌ¹‹úÿÿÿÿ
-Upython:S5720°"<Rename "text" to "self" or add the missing "self" parameter.(·ŸÔ˜
-rpython:S3776Á"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(ÖÖžÜþÿÿÿÿ
-Dpython:S1172Û"+Remove the unused function parameter "arg".(çµÖ›
-Ipython:S1172Þ"+Remove the unused function parameter "arg".(ºô¬Èøÿÿÿÿ
-rpython:S3776í"TRefactor this function to reduce its Cognitive Complexity from 33 to the 15 allowed.(®ÿ÷…øÿÿÿÿ
-rpython:S3776"TRefactor this function to reduce its Cognitive Complexity from 22 to the 15 allowed.(˜ÙÀƒûÿÿÿÿ
-Dpython:S1172ä"+Remove the unused function parameter "cls".(¥”­Â
-Fpython:S1172ä"-Remove the unused function parameter "state".(¥”­Â
-Dpython:S1172ê"+Remove the unused function parameter "cls".(€ÛªŒ
-/python:S6659ú"Use `startswith` here.(éÏû÷
-lpython:S3776Ç"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(žùóa
-mpython:S3776©"TRefactor this function to reduce its Cognitive Complexity from 65 to the 15 allowed.(ƒáÈù
-mpython:S3776ü"TRefactor this function to reduce its Cognitive Complexity from 76 to the 15 allowed.(ö©Óñ
-lpython:S3776¿"TRefactor this function to reduce its Cognitive Complexity from 24 to the 15 allowed.(ºêÀ2

@@ -36,9 +36,12 @@ encerrar_programa = 'Encerrar programa'
 login_proxy = 'Login Proxy - [PTFE v1.0]'
 PTFE = 'PTFE v1.0'
 
+pmsg.alert(text=f'Verifique a atualização dos arquivos de backup\nVerifique a renomeação das abas das planilhas\nVerifique a qualidade dos dados, especialmente dos nomes breves', title=PTFE)
+
 execution_type = pmsg.confirm(text='Qual tipo de execução você gostaria de fazer?', title='Tipo de execução- [PTFE v1.0]', buttons=['Apenas processamento de dados', 'Apenas parte web', 'Completa (dados + web)', encerrar_programa])
 if execution_type == 'Apenas processamento de dados':
     lib_code.tratamento_dados()
+    pmsg.alert(text=f'{programa_encerrado}', title=PTFE)
 
 elif execution_type == 'Apenas parte web':
     pmsg.alert(text='ATENÇÃO. Para esse tipo de execução \né importante que o Chrome já esteja aberto\ne que já esteja logado no proxy e na plataforma do estudante.\n\nAlém disso, é importante que o chrome esteja\nconfigurado para não permitir abertura de caixas\nde diálogo adicionais.',title='ATENÇÃO - [PTFE v1.0]')

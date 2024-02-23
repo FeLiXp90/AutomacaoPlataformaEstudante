@@ -49,7 +49,7 @@ def tratamento_dados():
 
     if 'df_usuarios' in locals():
         # Filtre as linhas onde 'Curso Existente?' é 'NÃO'
-        df_filtrado_usuarios = df_usuarios[df_usuarios['Curso Existente?'] == 'NÃO']
+        df_filtrado_usuarios = df_usuarios[df_usuarios['Curso Existente?'] == 'Não']
         # Crie uma cópia do DataFrame filtrado
         df_filtrado_copia_usuarios = df_filtrado_usuarios.copy()
         # Aplicar a função à cópia
@@ -247,7 +247,7 @@ def web():
                     lib_functions.verifica_load(local_carregamento_PTFE, .9) # pausa para a página carregar
                     time.sleep(2) #tempo extra para a página carregar
                     pos_screen = pa.locateOnScreen('media/finalizacao-deletar-sala-automatizacao.png', confidence=0.8)
-                    pa.click(pos_screen.left + pos_screen.width, pos_screen.height + pos_screen.top - 10, duration=5)
+                    pa.click(pos_screen.left + pos_screen.width + 15, pos_screen.height + pos_screen.top - 10, duration=5)
                     time.sleep(2)  # pausa para carregar a janela de confirmação
                     pos_screen = pa.locateCenterOnScreen('media/finalizacao-botao-excluir.png', confidence=0.9)
                     pa.click(pos_screen, duration=.5)
@@ -432,4 +432,3 @@ def web():
         dflogexclusivos.to_csv(f'logs/{nome_arquivo_log}', sep=';', index=False)
         nome_arquivo_log = f'log_executados_{data_log}_{hora_log}.csv'
         dflogexecutados.to_csv(f'logs/{nome_arquivo_log}', sep=';', index=False)
-

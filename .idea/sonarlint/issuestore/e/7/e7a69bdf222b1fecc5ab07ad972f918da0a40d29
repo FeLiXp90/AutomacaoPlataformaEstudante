@@ -1,14 +1,0 @@
-
-Gpython:S5906!"*Consider using "assertIsInstance" instead.(Ä««„ùÿÿÿÿ
-Bpython:S5906#"*Consider using "assertIsInstance" instead.(ëßïÓ
-kpython:S117U"URename this parameter "mockATW32" to match the regular expression ^[_a-z][a-z0-9_]*$.(ò„š
-
-<python:S5906Y"$Consider using "assertTrue" instead.(ÙÞ—×
-<python:S5906Z"$Consider using "assertTrue" instead.(šÊÃá
-lpython:S117]"URename this parameter "mockATW32" to match the regular expression ^[_a-z][a-z0-9_]*$.(è¶Èø
-Apython:S5906c"$Consider using "assertTrue" instead.(ìÑ·ïýÿÿÿÿ
-<python:S5906d"$Consider using "assertTrue" instead.(¿Ú¹¦
-=python:S5906h"%Consider using "assertFalse" instead.(ÑØ“¯
-=python:S5906j"%Consider using "assertFalse" instead.(ÑØ“¯
-opython:S117o"XRename this parameter "mockRegister" to match the regular expression ^[_a-z][a-z0-9_]*$.(•”ÕÞ
-Àpython:S1515š"¦Add a parameter to the parent lambda function and use variable "native_ansi" as its default value; The value of "native_ansi" might change at the next loop iteration.(äÃÑÊ

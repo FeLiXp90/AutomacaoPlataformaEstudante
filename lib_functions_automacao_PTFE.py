@@ -85,6 +85,8 @@ def nome_curso(shortname):
     """
     if "_PIP_" in shortname:
         return "PROJETO DE INTERVENÇÃO/PESQUISA APLICADA À COMUNIDADE"
+    elif "_PROINPAC_" in shortname:
+        return "PROJETO DE INTERVENÇÃO/PESQUISA APLICADA À COMUNIDADE"
     elif "_PIPAT_" in shortname:
         return "PROJETO INTEGRADOR DE PESQUISA E ARTICULAÇÃO COM O TERRITÓRIO"
     elif "_PVI1_" in shortname:
