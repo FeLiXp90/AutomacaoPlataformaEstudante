@@ -313,8 +313,8 @@ def web():
                 time.sleep(1)  # pausa para scrolar
                 pos_screen = lib_functions.mult_img_selection(['media/restauracao-opcao-restauracao-excluir-1.png', 'media/restauracao-opcao-restauracao-excluir-2.png'], confidence_level=0.95)
                 pa.click(pos_screen, duration=0.5)
-                pos_screen = pa.click(pos_screen[0] + 160, pos_screen[1] + 50, duration=0.5)
-                pa.click(pos_screen, duration=0.5)
+                pos_screen =  pa.locateOnScreen('media/restauracao-botao-continuar-restaurar-neste-curso.png', confidence= 0.9)
+                pa.click(pos_screen.width + pos_screen.left - 50, pos_screen.top + pos_screen.height - 25, duration=0.5)
                 lib_functions.verifica_load(local_carregamento_PTFE, .9) # pausa para a página carregar
 
                 pos_screen = pa.locateCenterOnScreen('media/restauracao-texto-restaurar-configuracoes.png', confidence=0.95)
