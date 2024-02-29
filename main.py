@@ -34,7 +34,7 @@ import pymsgbox as pmsg, sys
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
 login_proxy = 'Login Proxy - [PTFE v1.0]'
-PTFE = 'PTFE v1.0'
+PTFE = 'PTFE v2.0'
 
 pmsg.alert(text=f'Verifique a atualização dos arquivos de backup\nVerifique a renomeação das abas das planilhas\nVerifique a qualidade dos dados, especialmente dos nomes breves', title=PTFE)
 

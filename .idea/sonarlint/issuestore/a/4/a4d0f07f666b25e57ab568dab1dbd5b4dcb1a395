@@ -1,6 +1,11 @@
 
-kpython:S1192Ê"MDefine a constant instead of duplicating this literal r'(EJA-\D{2})' 3 times.(Ð£óüýÿÿÿÿ
-vpython:S117Ù"YRename this local variable "etapaEJA" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒÝ¼­ÿÿÿÿÿ
-upython:S117Ü"XRename this local variable "etapaEM" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÎ¨ëüÿÿÿÿ
-mpython:S5850Î"TGroup parts of the regex together to make the intended operator precedence explicit.(Êƒó×
-mpython:S5850ø"TGroup parts of the regex together to make the intended operator precedence explicit.(Žê¿Ã
+®
+AY3Hm6L_5JKpHnxyh3Ropython:S1192Í"MDefine a constant instead of duplicating this literal r'(EJA-\D{2})' 3 times.(Ð£óüýÿÿÿÿ8¸Ýè¼Ü1J$dcaf3311-3289-41e1-a34e-f882cf614a96
+¹
+AY3Hm6L_5JKpHnxyh3Rqpython:S117Ü"YRename this local variable "etapaEJA" to match the regular expression ^[_a-z][a-z0-9_]*$.(ƒÝ¼­ÿÿÿÿÿ8¸Ýè¼Ü1J$b122f31c-07ef-4282-89e3-537be83f23b0
+¸
+AY3Hm6L_5JKpHnxyh3Rrpython:S117ß"XRename this local variable "etapaEM" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÚÎ¨ëüÿÿÿÿ8¸Ýè¼Ü1J$434d4856-8348-472f-b0ab-593c46cc345f
+°
+AY3Hm6L_5JKpHnxyh3Rspython:S5850Ñ"TGroup parts of the regex together to make the intended operator precedence explicit.(Êƒó×8¸Ýè¼Ü1J$f00af70e-fdd2-4d8c-98c7-f90d95472f22
+°
+AY3Hm6L_5JKpHnxyh3Rtpython:S5850û"TGroup parts of the regex together to make the intended operator precedence explicit.(Žê¿Ã8¸Ýè¼Ü1J$cb28a7e6-a990-4107-8a31-f364031ece9e

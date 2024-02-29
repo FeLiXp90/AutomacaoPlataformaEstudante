@@ -5,8 +5,8 @@ import pyautogui as pa, time, pyperclip as pclip  # upload de arquivo .csv
 
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
-login_proxy = 'Login Proxy - [PTFE v1.0]'
-PTFE = 'PTFE v1.0'
+login_proxy = 'Login Proxy - [PTFE v2.0]'
+PTFE = 'PTFE v2.0'
 local_templatefinal = 'uploadCSV/templatefinal.csv'
 local_imagem_botao_config = 'media/restauracao-botao-configuracoes.png'
 local_carregamento_PTFE = 'media/verifica_carregamento_PTFE.png'
@@ -110,7 +110,7 @@ def tratamento_dados():
     pa.hotkey('alt', 'space')
     pa.press('x')
     time.sleep(1)  # pausa para a plataforma do estudante carregar
-    lib_functions.send_file(os.path.join('Secretaria de Estado da Educação', 'Cefope - Equipe Tecnologia', 'Projetos Python', 'Automação Plataforma Estudante', 'automacao_web', 'uploadCSV', 'templatefinal.CSV'))
+    lib_functions.send_file(os.path.join('Secretaria de Estado da Educação', 'Cefope - Equipe Tecnologia', 'Projetos Python', 'Automação Plataforma Estudante', 'uploadCSV', 'templatefinal.CSV'))
 
     # configuração das opções de envio das listas suspensas)
     lib_functions.select_drop_down_list_exact('media/list-susp-delimitador.png',['media/op-list-susp-delimitador-1.png','media/op-list-susp-delimitador-2.png'], 0.7, 0.9)
@@ -285,7 +285,7 @@ def web():
             lib_functions.verifica_load(local_carregamento_PTFE, .9) # pausa para a página carregar
 
             # envio do arquivo no menu de restauração
-            backup_path = rf'Secretaria de Estado da Educação\Cefope - Equipe Tecnologia\Projetos Python\Automação Plataforma Estudante\automacao_web\backups\geral\{nome_backup}.mbz'
+            backup_path = rf'Secretaria de Estado da Educação\Cefope - Equipe Tecnologia\Projetos Python\Automação Plataforma Estudante\backups\geral\{nome_backup}.mbz'
             status_restauracao = lib_functions.send_file(backup_path)
             lib_functions.verifica_load('media/verifica_carregamento_upload_arquivo.png', 0.9)
 

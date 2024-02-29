@@ -9,11 +9,12 @@ import pyautogui as pa
 import time
 import pyperclip as pclip  # upload de arquivo .csv
 import re  # restauração e categorização
+from tkinter import ttk #GUI
 
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'
-login_proxy = 'Login Proxy - [PTFE v1.0]'
-PTFE = 'PTFE v1.0'
+login_proxy = 'Login Proxy - [PTFE v2.0]'
+PTFE = 'PTFE v2.0'
 imagem_escolher_arquivo = 'media/escolher-arquivo.png'
 
 # tratamento de dados da planilha
@@ -596,7 +597,7 @@ def send_course_image(nome_imagem, dflogexecutados):
     # parte explorador de arquivos
     time.sleep(1)  # pausa para carregar o explorador de arquivos
     user_path = os.path.expanduser("~")
-    image_path = rf'Secretaria de Estado da Educação\Cefope - Equipe Tecnologia\Projetos Python\Automação Plataforma Estudante\automacao_web\backups\geral\{nome_imagem}.png'
+    image_path = rf'Secretaria de Estado da Educação\Cefope - Equipe Tecnologia\Projetos Python\Automação Plataforma Estudante\backups\geral\{nome_imagem}.png'
     search = os.path.join(user_path, image_path)
     write_special_char(search)
     pa.press('enter')
@@ -615,3 +616,6 @@ def send_course_image(nome_imagem, dflogexecutados):
         dflogexecutados.at[dflogexecutados.index[-1], 'nome_imagem'] = nome_imagem
         pos_botao_enviar_arq = pa.locateCenterOnScreen('media/pos-enviar-arq.png', confidence=0.9)
         pa.click(pos_botao_enviar_arq, duration=.5)
+
+
+#GUI
