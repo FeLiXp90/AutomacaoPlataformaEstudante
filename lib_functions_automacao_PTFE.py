@@ -9,7 +9,6 @@ import pyautogui as pa
 import time
 import pyperclip as pclip  # upload de arquivo .csv
 import re  # restauração e categorização
-from tkinter import ttk #GUI
 
 programa_encerrado = 'Obrigado. Programa encerrado'
 encerrar_programa = 'Encerrar programa'

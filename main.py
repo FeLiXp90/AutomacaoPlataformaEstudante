@@ -25,10 +25,8 @@ Informações:
         EM PV - Sala inteira
 """
 
-
 import lib_code_automacao_PTFE as lib_code
-import pymsgbox as pmsg, sys
-
+import pymsgbox as pmsg, sys  # tratamento de dados
 
 
 programa_encerrado = 'Obrigado. Programa encerrado'
